@@ -5,6 +5,6 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', HomeController.index);
-router.get('/adm.json', ProdutosController.index)
+router.get('/produto.json', ProdutosController.index)
 
 module.exports = router;
