@@ -3,11 +3,7 @@ var Produto = require('../models/produto');
 
 const ProdutoController = {
   index: function(req, res, next) {
-    res.send([{
-      nome: "Fundo Imbiliario",
-      descricao:"fundo imbobiliario unitario",
-      nivel_investidor:3,
-    }]);
+    Produto.find().then(dado => res.send(dado));
   },
 
   create: (req, res, next)=> {    
@@ -19,6 +15,24 @@ const ProdutoController = {
       }
       res.status(201).send({});
     }); 
+  },
+
+  change: async(req, res, next)=> {
+      try {
+        await Produto.findOneAndUpdate({_id: req.params.produto_id}, {nome: req.body.nome, senha: req.body.senha, email: req.body.email});
+        res.status(204).send(`Alterado com o id ${req.params.produto_id}`);
+      } catch (error) {
+        res.status(401).send(`Erro ${error}`);
+      }; 
+  },
+
+  delete:async(req, res, next) =>{
+      try {
+        await Produto.findByIdAndDelete(req.params.produto_id);
+        res.status(204).send({});
+      } catch (error) {
+        res.status(401).send({});
+      };
   },
 }
 
