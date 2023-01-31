@@ -29,7 +29,7 @@ const ProdutoController = {
   change: async(req, res, next)=> {
     if (req.headers.token == TOKEN) { 
       try {
-        await Produto.findOneAndUpdate({_id: req.params.produto_id}, {nome: req.body.nome, senha: req.body.senha, email: req.body.email});
+        await Produto.findOneAndUpdate({_id: req.params.produto_id}, {nome: req.body.nome ,descricao: req.body.descricao, nivel_investidor: req.body.nivel_investidor});
         res.status(204).send(`Alterado com o id ${req.params.produto_id}`);
       } catch (error) {
         res.status(401).send(`Erro ${error}`);
