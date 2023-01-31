@@ -18,21 +18,21 @@ const ProdutoController = {
   },
 
   change: async(req, res, next)=> {
-      try {
-        await Produto.findOneAndUpdate({_id: req.params.produto_id}, {nome: req.body.nome, senha: req.body.senha, email: req.body.email});
-        res.status(204).send(`Alterado com o id ${req.params.produto_id}`);
-      } catch (error) {
-        res.status(401).send(`Erro ${error}`);
-      }; 
+    try {
+      await Produto.findOneAndUpdate({_id: req.params.produto_id}, {nome: req.body.nome, senha: req.body.senha, email: req.body.email});
+      res.status(204).send(`Alterado com o id ${req.params.produto_id}`);
+    } catch (error) {
+      res.status(401).send(`Erro ${error}`);
+    }; 
   },
 
   delete:async(req, res, next) =>{
-      try {
-        await Produto.findByIdAndDelete(req.params.produto_id);
-        res.status(204).send({});
-      } catch (error) {
-        res.status(401).send({});
-      };
+    try {
+      await Produto.findByIdAndDelete(req.params.produto_id);
+      res.status(204).send({});
+    } catch (error) {
+      res.status(401).send({});
+    };
   },
 }
 
